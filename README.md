@@ -1,4 +1,3 @@
-
 # Project 15 Open Platform for Conservation and Ecological Sustainability Solutions
 
 | Quick Links                                          | Description                                                                                                                                  |
