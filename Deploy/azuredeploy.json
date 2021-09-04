@@ -87,22 +87,24 @@
       "nameSpace": "[concat('P15-EventHubs-', parameters('UniqueID'))]",
       "apiVersion": "2021-01-01-preview",
       "name": "devicetelemetryhub",
-      "cgFunctions": "telemetry-functions-cg",
-      "cgTsi": "telemetry-tsi-cg",
       "ruleListen": "TelemetryListenRule",
       "ruleSend": "TelemetrySendRule",
-      "sku": "Standard",
-      "ConsumerGroupTelemetry": "[if(parameters('DevelopmentEnvironment'), '$Default', 'telemetry-functions-cg')]",
-      "ConsumerGroupTsi": "[if(parameters('DevelopmentEnvironment'), '$Default', 'telemetry-tsi-cg')]"
+      "sku": "[if(parameters('DevelopmentEnvironment'), 'Basic', 'Standard')]",
+      "cgFunction": "telemetry-functions-cg",
+      "cgTsi": "telemetry-tsi-cg"
     },
     "eventHubsSku": {
       "Basic": {
         "skuName": "Basic",
-        "tier": "Basic"
+        "tier": "Basic",
+        "cgTsi": "$Default",
+        "cgFunction": "$Default"
       },
       "Standard": {
         "skuName": "Standard",
-        "tier": "Standard"
+        "tier": "Standard",
+        "cgTsi": "[variables('eventHubs').cgTsi]",
+        "cgFunction": "[variables('eventHubs').cgFunction]"
       }
     },
     "appSvc": {
@@ -346,7 +348,7 @@
             },
             {
               "condition": "[equals(variables('eventhubs').sku, 'Standard')]",
-              "name": "[variables('eventHubs').cgFunctions]",
+              "name": "[variables('eventHubs').cgFunction]",
               "type": "consumergroups",
               "apiVersion": "[variables('eventhubs').apiVersion]",
               "dependsOn": [
@@ -694,7 +696,7 @@
         "ADT_HOST_URL": "[if(parameters('AzureDigitalTwins'), concat('https://', reference(resourceId('Microsoft.DigitalTwins/digitalTwinsInstances', variables('adt').name)).hostName), '')]",
         "MAP_KEY": "[listKeys(resourceId('Microsoft.Maps/accounts', variables('map').name), variables('map').apiVersion).primaryKey]",
         "ModelRepository": "[concat(variables('PrivateModelRepo').url, variables('PrivateModelRepo').branch)]",
-        "TELEMETRY_CG": "[variables('eventHubs').ConsumerGroupTelemetry]"
+        "TELEMETRY_CG": "[variables('eventHubsSku')[variables('eventHubs').sku].cgFunction]"
       }
     },
     {
@@ -796,7 +798,7 @@
         "Azure__Dps__WebHookUrl": "[listsecrets(resourceId('Microsoft.Web/sites/functions', variables('appSvc').functionsName, 'Dps_Processor'), variables('appSvc').apiVersion).trigger_url]",
         "Azure__ModelRepository__repoUrl": "[concat(variables('PrivateModelRepo').url, variables('PrivateModelRepo').branch)]",
         "Azure__GitHub__token": "",
-        "TELEMETRY_CG": "[variables('eventHubs').ConsumerGroupTelemetry]"
+        "TELEMETRY_CG": "[variables('eventHubsSku')[variables('eventHubs').sku].cgFunction]"
       }
     },
     {
@@ -822,7 +824,7 @@
         },
         "timeSeriesIdProperties": [
           {
-            "name": "iotHub-connection-device-id",
+            "name": "iothub-connection-device-id",
             "type": "string"
           }
         ]
@@ -839,7 +841,6 @@
           "dependsOn": [
             "[resourceId('Microsoft.TimeSeriesInsights/environments', variables('tsi').environment)]",
             "[resourceId('Microsoft.EventHub/Namespaces', variables('eventHubs').nameSpace)]",
-            "[resourceId('Microsoft.EventHub/Namespaces/EventHubs/ConsumerGroups', variables('eventHubs').nameSpace, variables('eventHubs').name, variables('eventHubs').cgTsi)]",
             "[resourceId('Microsoft.EventHub/Namespaces/EventHubs/AuthorizationRules', variables('eventHubs').nameSpace, variables('eventHubs').name, variables('eventHubs').ruleListen)]"
           ],
           "kind": "Microsoft.EventHub",
@@ -847,7 +848,7 @@
             "eventSourceResourceId": "[resourceId('Microsoft.EventHub/namespaces/eventhubs', variables('eventHubs').nameSpace, variables('eventHubs').name)]",
             "eventHubName": "[variables('eventHubs').name]",
             "serviceBusNamespace": "[variables('eventHubs').nameSpace]",
-            "consumerGroupName": "[variables('eventHubs').ConsumerGroupTsi]",
+            "consumerGroupName": "[variables('eventHubsSku')[variables('eventHubs').sku].cgTsi]",
             "keyName": "[variables('eventHubs').ruleListen]",
             "sharedAccessKey": "[listkeys(resourceId(resourceGroup().name, 'Microsoft.EventHub/Namespaces/EventHubs/AuthorizationRules', variables('eventHubs').nameSpace, variables('eventHubs').name, variables('eventHubs').ruleListen), variables('eventHubs').apiVersion).primaryKey]"
           }
