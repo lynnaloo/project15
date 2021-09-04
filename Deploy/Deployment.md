@@ -23,6 +23,9 @@ Click **Deploy to Azure** button below
 > [!TIP]  
 > Right click the button below and select **Open link in new tab** or **Open lin in new window**
 
+> [!NOTE]  
+> This deployment will consume about 100 USD per month.  If you would like to deploy for your development, turn on `Development Environment` option to deploy with Free SKUs.  With Free SKUs, quotas and limitations apply.
+
 ## 2. Personalize and configure deployment
 
 ![Deployment 01](media/Deployment-01.png)
