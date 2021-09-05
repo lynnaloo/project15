@@ -28,6 +28,7 @@
   },
   "variables": {
     "envTag": "v0.9",
+    "prefix" : "[if(parameters('DevelopmentEnvironment'), 'P15', 'P15Dev')]",
     "gitRepo": {
       "webApp": "https://github.com/microsoft/project15-openplatform-webapp.git",
       "webAppBranch": "v0.9",
@@ -42,7 +43,7 @@
       "tsi": "https://raw.githubusercontent.com/microsoft/project15/master/Deploy/ConfigureTSI.sh"
     },
     "iotHub": {
-      "name": "[concat('P15-IoTHub-', parameters('UniqueID'))]",
+      "name": "[concat(variables('prefix'), '-IoTHub-', parameters('UniqueID'))]",
       "apiVersion": "2021-03-31",
       "eventHubsCG": "[concat('P15-IoTHub-', parameters('UniqueID'), '/events/eventHubsCG')]",
       "systemTopic": "IoTHubSystemTopic",
@@ -59,7 +60,7 @@
       }
     },
     "dps": {
-      "name": "[concat('P15-DPS-', parameters('UniqueID'))]",
+      "name": "[concat(variables('prefix'), '-DPS-', parameters('UniqueID'))]",
       "apiVersion": "2020-03-01",
       "sku": "S1"
     },
@@ -69,7 +70,7 @@
       }
     },
     "signalR": {
-      "name": "[concat('P15-SignalR-', parameters('UniqueID'))]",
+      "name": "[concat(variables('prefix'), '-SignalR-', parameters('UniqueID'))]",
       "apiVersion": "2020-05-01",
       "sku": "[if(parameters('DevelopmentEnvironment'), 'Free_F1', 'Standard_S1')]"
     },
@@ -84,7 +85,7 @@
       }
     },
     "eventHubs": {
-      "nameSpace": "[concat('P15-EventHubs-', parameters('UniqueID'))]",
+      "nameSpace": "[concat(variables('prefix'), '-EventHubs-', parameters('UniqueID'))]",
       "apiVersion": "2021-01-01-preview",
       "name": "devicetelemetryhub",
       "ruleListen": "TelemetryListenRule",
@@ -109,10 +110,10 @@
     },
     "appSvc": {
       "apiVersion": "2020-12-01",
-      "hostingPlan": "[concat('P15-HostingPlan-', parameters('UniqueID'))]",
-      "functionsName": "[concat('P15-Functions-', parameters('UniqueID'))]",
-      "webappName": "[concat('P15-Portal-', parameters('UniqueID'))]",
-      "webappUrl": "[toLower(concat('https://', 'P15-Portal-', parameters('UniqueID'), '.azurewebsites.net'))]",
+      "hostingPlan": "[concat(variables('prefix'), '-HostingPlan-', parameters('UniqueID'))]",
+      "functionsName": "[concat(variables('prefix'), '-Functions-', parameters('UniqueID'))]",
+      "webappName": "[concat(variables('prefix'), '-Portal-', parameters('UniqueID'))]",
+      "webappUrl": "[toLower(concat('https://', variables('prefix'), '-Portal-', parameters('UniqueID'), '.azurewebsites.net'))]",
       "sku": "[if(parameters('DevelopmentEnvironment'), 'D1', 'S1')]"
     },
     "appSvcSku": {
@@ -124,7 +125,7 @@
       }
     },
     "storage": {
-      "name": "[toLower(concat('p15stor', parameters('UniqueID')))]",
+      "name": "[toLower(concat(variables('prefix'),'stor', parameters('UniqueID')))]",
       "apiVersion": "2021-04-01",
       "sku": "Standard_LRS"
     },
@@ -135,7 +136,7 @@
       }
     },
     "tsi": {
-      "environment": "[concat('P15-TSI-', parameters('UniqueID'))]",
+      "environment": "[concat(variables('prefix'), '-TSI-', parameters('UniqueID'))]",
       "apiVersion": "2020-05-15",
       "location": "westus2",
       "eventSource": "TSI-EventHubs",
@@ -147,7 +148,7 @@
       }
     },
     "map": {
-      "name": "[concat('P15-MAP-', parameters('UniqueID'))]",
+      "name": "[concat(variables('prefix'), '-MAP-', parameters('UniqueID'))]",
       "apiVersion": "2021-02-01"
     },
     "PrivateModelRepo": {
@@ -158,7 +159,7 @@
       "apiVersion": "2020-04-01-preview"
     },
     "adt": {
-      "name": "[concat('P15-ADT-', parameters('UniqueID'))]",
+      "name": "[concat(variables('prefix'), '-ADT-', parameters('UniqueID'))]",
       "apiVersion": "2020-12-01",
       "location": "westus2",
       "identity": "functionsidentity",
