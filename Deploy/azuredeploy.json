@@ -28,7 +28,7 @@
   },
   "variables": {
     "envTag": "v0.9",
-    "prefix" : "[if(parameters('DevelopmentEnvironment'), 'P15', 'P15Dev')]",
+    "prefix" : "[if(bool(parameters('DevelopmentEnvironment')), 'P15Dev', 'P15')]",
     "gitRepo": {
       "webApp": "https://github.com/microsoft/project15-openplatform-webapp.git",
       "webAppBranch": "v0.9",
