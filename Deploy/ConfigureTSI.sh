@@ -6,10 +6,9 @@ uniqueId=$1
 resGroup=$2
 
 subscriptionId=$(az account show --query id -o tsv)
-# az login --identity
 
-webAppName=$(az webapp list --subscription $subscriptionId --resource-group $resGroup --query '[].name' -o tsv)
-tsiName=$(az tsi environment list --subscription $subscriptionId --resource-group $resGroup --query '[].name' -o tsv)
+webAppName=$(az webapp list --subscription ${subscriptionId} --resource-group ${resGroup} --query '[].name' -o tsv)
+tsiName=$(az tsi environment list --subscription ${subscriptionId} --resource-group $resGroup --query '[].name' -o tsv)
 
 echo "Web App Name  : ${webAppName}"
 echo "TSI Env Name  : ${tsiName}"
@@ -22,7 +21,7 @@ adAppName='P15-TSI-AD-App'-"$subscriptionId"
 
 servicePrincipalAppId=$(az ad app list --all --query '[].{AppId:appId}' --display-name $adAppName -o tsv)
 if [ -z $servicePrincipalAppId ]; then
-    servicePrincipalAppId=$(az ad app create --display-name $adAppName --identifier-uris "https://${adAppName}'.'"$domainName""  --oauth2-allow-implicit-flow true --required-resource-accesses '[{"resourceAppId":"120d688d-1518-4cf7-bd38-182f158850b6","resourceAccess":[{"id":"a3a77dfe-67a4-4373-b02a-dfe8485e2248","type":"Scope"}]}]' --query appId -o tsv)
+    servicePrincipalAppId=$(az ad app create --display-name ${adAppName} --identifier-uris "https://${adAppName}.${domainName}"  --oauth2-allow-implicit-flow true --required-resource-accesses '[{"resourceAppId":"120d688d-1518-4cf7-bd38-182f158850b6","resourceAccess":[{"id":"a3a77dfe-67a4-4373-b02a-dfe8485e2248","type":"Scope"}]}]' --query appId -o tsv)
 fi
 
 servicePrincipalObjectId=$(az ad sp list --query '[].objectId' --display-name "${adAppName}" -o tsv)
