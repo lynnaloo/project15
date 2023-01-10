@@ -28,7 +28,7 @@ In this example, a Power Automate flow is triggered as events are available in t
 
 ## Setup Sample Power App 🔧
 
-* [Import Power Apps solution](https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions) in this repository.
+* [Import](https://docs.microsoft.com/en-us/powerapps/maker/data-platform/import-update-export-solutions) the Power Platform solution archive [in this repository](../Solutions).
 * When you import the solution, it will prompt for creation of connections to the Dataverse database and to the Event Hub namespace for Project 15 running in Azure. Create the connections and be sure they are selected.
 * When you open the application, it will also ask you to allow access to these connections.
 
