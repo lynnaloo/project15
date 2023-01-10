@@ -12,17 +12,12 @@
 
     [Data ingestion and Data Pipeline](Data-Ingestion-Data-Pipeline.md)
 
-1. Azure Functions
-
-    Coming Soon!
-
 1. Sample Web Portal
 
     Coming Soon!
 
-1. Realtime Analytics with Azure Stream Analytics
+1. Power Platform
 
-    Coming Soon!
+    [Example Low-Code Power App and Power Automate Workflow](Power-Platform.md)
 
 [Project 15 from Microsoft | Open Platform](../README.md)
-
