@@ -4,7 +4,7 @@
 |------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------|
 | [Deploy](Deploy/Deployment.md)                       | Deploy the Project 15 Open Platform to Azure and configure into your Azure account with click of a button. |
 | [Developer Guide](Developer-Guide/DeveloperGuide.md) | Double click into developing on the Project 15 Open Platform. Includes deep dive into the architecture and features. |
-| [Edge Impulse](https://github.com/microsoft/project15/tree/EdgeImpulse/Edge-Impulse-Guide) | https://github.com/microsoft/project15/tree/EdgeImpulse/Edge-Impulse-Guide | Explore the integration of Edge Impulse with the Project 15 Open Platform and bringing TinyML to your solution. |
+| [Edge Impulse](https://github.com/microsoft/project15/tree/EdgeImpulse/Edge-Impulse-Guide) | Explore the integration of Edge Impulse with the Project 15 Open Platform and bringing TinyML to your solution. |
 | [Power Platform](https://powerplatform.microsoft.com/) | Democratize application development and increase access to data by including low-code applications, workflows, bots, and analytics into the Project 15 Open Platform. |
 | [Planetary Computer](https://planetarycomputer.microsoft.com/) |  Coming soon. Open-source low-code data connector for Microsoft Planetary Computer APIs |
 | Project 15 Capstones | [The "Project 15 Challenge" Capstone Library](#The-Project-15-Challenge-Capstone-Library) |
