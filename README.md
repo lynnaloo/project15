@@ -7,7 +7,7 @@
 | [Edge Impulse](https://github.com/microsoft/project15/tree/EdgeImpulse/Edge-Impulse-Guide) | https://github.com/microsoft/project15/tree/EdgeImpulse/Edge-Impulse-Guide | Explore the integration of Edge Impulse with the Project 15 Open Platform and bringing TinyML to your solution. |
 | [Power Platform](https://powerplatform.microsoft.com/) | Democratize application development and increase access to data by including low-code applications, workflows, bots, and analytics into the Project 15 Open Platform. |
 | [Planetary Computer](https://planetarycomputer.microsoft.com/) |  Coming soon. Open-source low-code data connector for Microsoft Planetary Computer APIs |
-| Project 15 Capstones | [The "Project 15 Challenge" Capstone Library](## The “Project 15 Challenge” Capstone Library) |
+| Project 15 Capstones | [The "Project 15 Challenge" Capstone Library](#The-Project-15-Challenge-Capstone-Library) |
 
 ## About Project 15 Open Platform
 
@@ -82,7 +82,7 @@ For a quick start guide to deployment, please visit our [Deployment Guide](Deplo
 | [Planetary Computer](https://planetarycomputer.microsoft.com/) | The Planetary Computer combines a multi-petabyte catalog of global environmental data with intuitive APIs, a flexible scientific environment that allows users to answer global questions about that data, and applications that put those answers in the hands of conservation stakeholders. |
 | [Microsoft Learn](https://aka.ms/learn)| Microsoft's comprehensive and free learning platform. |
 
-## The “Project 15 Challenge” Capstone Library
+## The Project 15 Challenge Capstone Library
 
 The Project 15 Challenge from Microsoft worked with leading universities to design graduate thesis projects that students used to complete their advanced degrees.  Partnering students and student groups with leading NGOs to solve problems needing to be unlocked.
 
